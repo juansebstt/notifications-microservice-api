@@ -20,7 +20,7 @@ public class S3Properties {
     private String secretKey;
 
     private String bucket;
-    
+
     private String zone;
 
 }
