@@ -57,6 +57,6 @@ public class FileUtilTools {
     public static String getFileName(String filePath) {
         File file = new File(filePath);
         return file.getName();
-    }   
+    }
 
 }
