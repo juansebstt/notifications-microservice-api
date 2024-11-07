@@ -16,5 +16,5 @@ public class EventHandler {
     public Function<Flux<NotificationEvent>, Mono<Void>> notificationBinding(final NotificationProcessor processor) {
         return processor;
     }
-    
+
 }
