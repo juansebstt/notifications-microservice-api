@@ -16,6 +16,7 @@ public class AmazonS3Config {
     private final S3Properties s3Properties;
 
     public AmazonS3Config(S3Properties s3Properties) {
+
         this.s3Properties = s3Properties;
     }
 
@@ -23,9 +24,11 @@ public class AmazonS3Config {
     public AmazonS3 s3Client() {
         log.info("S3 client initialized with bucket: {} in {}", s3Properties.getBucket(), s3Properties.getZone());
         return AmazonS3ClientBuilder.standard()
-                .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(s3Properties.getAccessKey(), s3Properties.getSecretKey())))
+                .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(s3Properties.getAccessKey(),
+                        s3Properties.getSecretKey())))
                 .withEndpointConfiguration(
-                        new AwsClientBuilder.EndpointConfiguration("http://127.0.0.1:4566/" + s3Properties.getBucket(), s3Properties.getZone())
+                        new AwsClientBuilder.EndpointConfiguration("http://127.0.0.1:4566/" +
+                                s3Properties.getBucket(), s3Properties.getZone())
                 )
                 .build();
     }
