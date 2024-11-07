@@ -7,6 +7,9 @@ import org.apache.commons.io.IOUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Optional;
 
 @Slf4j
 public class FileUtilTools {
@@ -27,6 +30,33 @@ public class FileUtilTools {
         }
     }
 
-    
+    public static void deleteFile(String absolutePath) {
+        Optional.ofNullable(absolutePath)
+                .map(Path::of)
+                .filter(Files::exists)
+                .ifPresent(path -> {
+                    try {
+                        Files.deleteIfExists(path);
+                        log.info("File Deleted: [{}]", path.getFileName());
+                    } catch (IOException e) {
+                        log.error("File not Deleted: [{}]", path.getFileName(), e);
+                    }
+                });
+    }
+
+    public static String readFileContent(String filePath) {
+        try {
+            File file = new File(filePath);
+            return FileUtils.readFileToString(file);
+        } catch (IOException e) {
+            log.error("File buffered error: {}", filePath);
+            return null;
+        }
+    }
+
+    public static String getFileName(String filePath) {
+        File file = new File(filePath);
+        return file.getName();
+    }   
 
 }
