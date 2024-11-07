@@ -17,7 +17,7 @@ import java.util.function.Function;
 public class NotificationProcessor implements Function<Flux<NotificationEvent>, Mono<Void>> {
 
     public final NotificationService notificationService;
-    
+
     @Override
     public Mono<Void> apply(Flux<NotificationEvent> notificationEventFlux) {
         return notificationEventFlux
